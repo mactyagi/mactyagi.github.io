@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CleanerApp — App Icon
+  ─────────────────────
+  1024×1024 master. iOS rounds the corners automatically — DO NOT pre-round.
+  No transparency (App Store rejects icons with alpha).
+
+  Design: a luminous 4-point sparkle on a fresh iOS-blue gradient — reads
+  universally as "polished / clean / magic", matching Apple's own auto-
+  enhance / Siri visual language. Two smaller sparkles add asymmetric
+  motion so the icon doesn't feel like a static logo.
+
+  Export: open in any vector tool (Preview will work for a quick render)
+  and export to PNG at the sizes the iOS asset catalog wants — see the
+  table in the conversation accompanying this file.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1024 1024"
+     width="1024" height="1024">
+
+  <defs>
+    <!-- Background: bright sky-blue → deep iOS-blue, diagonal -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#5BC0FF"/>
+      <stop offset="55%"  stop-color="#2E84E6"/>
+      <stop offset="100%" stop-color="#0052D4"/>
+    </linearGradient>
+
+    <!-- Apple-style soft highlight in the upper-left quadrant. Subtle: it
+         shouldn't read as a separate shape, just lift the surface. -->
+    <radialGradient id="highlight" cx="28%" cy="22%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.32"/>
+      <stop offset="60%"  stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Very gentle drop shadow under the main sparkle so it floats off
+         the blue surface without looking heavy. -->
+    <filter id="sparkle-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="0" dy="8" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.22"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Reusable sparkle path. Concave Bézier sides give the classic
+         "twinkle / shine" silhouette used in iOS auto-enhance UI. -->
+    <symbol id="sparkle" viewBox="-340 -340 680 680">
+      <path d="
+        M 0 -340
+        C 50 -110, 110 -50, 340 0
+        C 110 50, 50 110, 0 340
+        C -50 110, -110 50, -340 0
+        C -110 -50, -50 -110, 0 -340
+        Z"
+        fill="#FFFFFF"/>
+    </symbol>
+  </defs>
+
+  <!-- Background fill -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- Soft highlight overlay -->
+  <rect width="1024" height="1024" fill="url(#highlight)"/>
+
+  <!-- Main sparkle — biased slightly up-left of dead-centre so the icon
+       feels alive rather than mechanically centred. Drop shadow gives a
+       millimetre of lift. -->
+  <use href="#sparkle"
+       x="156" y="144" width="680" height="680"
+       filter="url(#sparkle-shadow)"/>
+
+  <!-- Companion sparkle, upper-right. Smaller + slightly transparent so
+       it reads as secondary. -->
+  <use href="#sparkle"
+       x="720" y="170" width="220" height="220"
+       opacity="0.95"/>
+
+  <!-- Third sparkle, lower-right. Smallest of the three. Together with
+       the upper-right one it sets a diagonal counter to the main sparkle's
+       offset so the composition stays balanced. -->
+  <use href="#sparkle"
+       x="640" y="760" width="150" height="150"
+       opacity="0.9"/>
+</svg>
