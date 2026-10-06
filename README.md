@@ -6,6 +6,7 @@ Support pages for my iOS apps, served by GitHub Pages at https://mactyagi.github
   and one file covers every app on this AdMob account.
 - `index.html`: the list of apps.
 - `cleava/`: support page for Cleava: Clean Storage Space.
+- `cleava/privacy/`: Cleava's privacy policy. It names every service the app sends data to, so update it when one is added or removed.
 
 ## Adding an app
 
